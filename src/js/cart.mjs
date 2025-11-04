@@ -3,20 +3,31 @@ import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
 
+function loadTotalPrice(cartItems) {
+  let total = 0;
+  cartItems.forEach(item => total += item.FinalPrice)
+  document.querySelector('#orderTotal').innerText = total.toString()
+}
+
+
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   document.querySelectorAll('.cart-card__remove').forEach(item => {
     item.addEventListener('click', (e) => {
-      const cartItems = getLocalStorage("so-cart") || [];
-      setLocalStorage("so-cart", cartItems.filter(ci => ci.Id !== item.dataset.id ));
+      let cis = getLocalStorage("so-cart") || [];
+      cis = cis.filter(ci => ci.Id !== item.dataset.id )
+      setLocalStorage("so-cart", cis);
       item.parentElement.classList.add('cart-card__deleted')
       setTimeout(() => {
         item.parentElement.remove()
       }, 350)
+      loadTotalPrice(cis)
     })
   })
+
+  loadTotalPrice(cartItems)
 }
 
 function cartItemTemplate(item) {

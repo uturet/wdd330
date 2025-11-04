@@ -17,4 +17,3 @@ function refreshCartCounter() {
         counter.classList.add(disabled)
     }
 }
-refreshCartCounter()

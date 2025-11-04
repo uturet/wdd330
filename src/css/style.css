@@ -104,6 +104,13 @@ button {
   text-align: center;
 }
 
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  max-width: 500px;
+}
+
 .cart svg {
   width: 25px;
 }

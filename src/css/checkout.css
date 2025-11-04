@@ -1,0 +1,134 @@
+:root{
+    --border:#c9c9c9;
+    --text:#222;
+    --muted:#666;
+    --bg:#fff;
+    --accent:#59611f;   /* olive green similar to screenshot */
+    --accent-pressed:#414714;
+    --radius:6px;
+    --input-h:42px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font:16px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:#f7f7f7;
+    display:flex;
+    justify-content:center;
+    padding:24px 12px 48px;
+  }
+
+  .page{
+    width:100%;
+    max-width:380px; /* close to the screenshot width */
+  }
+
+  h1{
+    margin:0 0 10px;
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:.2px;
+  }
+
+  .panel{
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:10px 12px 12px;
+    margin-top:10px;
+  }
+
+  fieldset{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:10px 10px 12px;
+    margin:14px 0;
+  }
+
+  legend{
+    padding:0 6px;
+    font-weight:700;
+    font-size:16px;
+  }
+
+  .row{
+    margin-top:10px;
+  }
+
+  label{
+    display:block;
+    font-size:14px;
+    margin:0 0 4px;
+  }
+
+  input{
+    display:block;
+    width:100%;
+    height:var(--input-h);
+    border:1px solid var(--border);
+    border-radius:4px;
+    padding:10px 12px;
+    font-size:16px;
+    background:#fff;
+  }
+  input:focus{
+    outline:2px solid #9fb26a55;
+    border-color:#9fb26a;
+    box-shadow:0 0 0 3px #9fb26a33;
+  }
+
+  /* Order summary */
+  .summary{
+    margin-top:4px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    row-gap:10px;
+    column-gap:14px;
+    align-items:center;
+  }
+  .summary .label{
+    font-size:15px;
+  }
+  .summary .value{
+    font-size:15px;
+    color:#000;
+  }
+  .summary .muted{
+    color:var(--muted);
+  }
+  .summary .total{
+    margin-top:4px;
+    padding-top:6px;
+    border-top:1px solid var(--border);
+    font-weight:800;
+  }
+
+  /* Button */
+  .actions{
+    display:flex;
+    justify-content:center;
+    margin-top:16px;
+  }
+  .btn{
+    width:100%;
+    border:0;
+    border-radius:6px;
+    padding:14px 18px;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    background:var(--accent);
+    color:#fff;
+  }
+  .btn:active{ background:var(--accent-pressed); }
+  .btn:focus-visible{
+    outline:3px solid #c9d58a;
+    outline-offset:2px;
+  }
+
+  /* Small helpers for very narrow screens */
+  @media (max-width:340px){
+    h1{ font-size:24px; }
+  }

@@ -66,9 +66,9 @@ export async function loadHeaderFooter(){
   const headerElement = document.querySelector("#default-header");
   const footerElement = document.querySelector("#default-footer");
   
-  await renderWithTemplate(headTemplateFn, headElement);
-  await renderWithTemplate(headerTemplateFn, headerElement);
-  await renderWithTemplate(footerTemplateFn, footerElement);
+  // await renderWithTemplate(headTemplateFn, headElement);
+  // await renderWithTemplate(headerTemplateFn, headerElement);
+  // await renderWithTemplate(footerTemplateFn, footerElement);
 }
 
 
