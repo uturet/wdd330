@@ -1,6 +1,7 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 const checkoutProcess = {
+    url: "http://server-nodejs.cit.byui.edu:3000/checkout",
     key: "so-cart",
     list: [],
     itemTotal: 0,
@@ -23,13 +24,15 @@ const checkoutProcess = {
     
     this.tax = 0
     this.itemTotal = 0
+    this.orderTotal = 0
     this.shipping = this.list.length ? (2 * this.list.length) + 8 : 0
     this.list.forEach((item) => {
-        this.tax += item.FinalPrice * 0.06
-        this.itemTotal += item.FinalPrice
+        const p = Number(item.FinalPrice)
+        this.tax += p * 0.06
+        this.itemTotal += p
     })
-    this.tax = this.tax.toFixed(2)
-    this.orderTotal = this.tax + this.shipping + 
+    this.tax = this.tax
+    this.orderTotal = this.tax + this.shipping + this.itemTotal
     
     // display the totals.
     this.displayOrderTotals();
@@ -38,10 +41,34 @@ const checkoutProcess = {
   displayOrderTotals: function() {
     // once the totals are all calculated display them in the order summary page
     document.querySelector('#itemCount').innerText = `$${this.list.length}`
-    document.querySelector('#itemTotal').innerText = `$${this.itemTotal}`
-    document.querySelector('#shipping').innerText = `$${this.shipping}`
-    document.querySelector('#tax').innerText = `$${this.tax}`
-    document.querySelector('#orderTotal').innerText = `$${this.orderTotal}`
+    document.querySelector('#itemTotal').innerText = `$${this.itemTotal.toFixed(2)}`
+    document.querySelector('#shipping').innerText = `$${this.shipping.toFixed(2)}`
+    document.querySelector('#tax').innerText = `$${this.tax.toFixed(2)}`
+    document.querySelector('#orderTotal').innerText = `$${this.orderTotal.toFixed(2)}`
+  },
+
+  getPayload: function() {
+    return {
+      orderDate: new Date().toISOString(),
+      fname: document.querySelector('#firstName').value,
+      lname: document.querySelector('#lastName').value,
+      street: document.querySelector('#street').value,
+      city: document.querySelector('#city').value,
+      state: document.querySelector('#state').value,
+      zip: document.querySelector('#zip').value,
+      cardNumber: document.querySelector('#card').value,
+      expiration: document.querySelector('#exp').value,
+      code: document.querySelector('#cvc').value,
+      items: this.list.map(item => ({
+        id: item.Id,
+        name: item.Name,
+        price: item.FinalPrice,
+        quantity: 1
+      })),
+      orderTotal: this.orderTotal,
+      shipping: this.shipping,
+      tax: this.tax,
+    }
   },
 
   submit: function() {
@@ -50,9 +77,23 @@ const checkoutProcess = {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(this.getPayload())
       }
-    fetch(url, options);
+    fetch(this.url, options).then(res => {
+      return res.json()
+    }).then(body => {
+      let message = body.message || ""
+      if (!message) {
+        for (const key in body) {
+          message += `${body[key]}\n`;
+        }
+      }
+      document.querySelector('#resMessage').innerText = message
+      
+    }).catch(error => {
+      console.error('Fetch failed:', error);
+    });
   }
 }
+
 export default checkoutProcess;

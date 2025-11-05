@@ -104,6 +104,7 @@
             <label for="card">Card number</label>
             <input
               id="card" name="card" type="text"
+              value="1234123412341234"
               inputmode="numeric" autocomplete="cc-number" required
               minlength="16" maxlength="16"
               pattern="^\d{16}$"
@@ -152,6 +153,7 @@
         <div class="actions">
           <button type="submit" class="btn" id="submit" aria-label="Place your order">Checkout</button>
         </div>
+        <p id="resMessage" style="text-align: center;"></p>
       </form>
     </main>
 
