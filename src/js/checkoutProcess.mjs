@@ -19,6 +19,16 @@ const checkoutProcess = {
     
   },
 
+  validateForm: function() {
+    let message = ""
+    document.querySelectorAll('input').forEach(inputEl => {
+      if (inputEl.value.match(inputEl.dataset.pattern) === null) {
+        message += `<p>${inputEl.name}: ${inputEl.title}</p>`
+      }
+    })
+    return message
+  },
+
   calculateOrdertotal: function() {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
     
@@ -72,6 +82,13 @@ const checkoutProcess = {
   },
 
   submit: function() {
+    const errMessage = this.validateForm()
+    console.log(errMessage)
+    if (errMessage) {
+      document.querySelector('#resMessage').innerHTML = errMessage
+      return
+    }
+
     const options = {
         method: 'POST',
         headers: {
@@ -85,10 +102,10 @@ const checkoutProcess = {
       let message = body.message || ""
       if (!message) {
         for (const key in body) {
-          message += `${body[key]}\n`;
+          message += `<p>${body[key]}</p>`;
         }
       }
-      document.querySelector('#resMessage').innerText = message
+      document.querySelector('#resMessage').innerHTML = message
       
     }).catch(error => {
       console.error('Fetch failed:', error);
