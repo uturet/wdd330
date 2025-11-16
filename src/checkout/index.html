@@ -42,8 +42,8 @@
               id="firstName" name="firstName" type="text"
               autocomplete="given-name" required
               minlength="2" maxlength="50"
-              pattern="^[A-Za-z][A-Za-z\s'\s-]{1,49}$"
-              title="Use letters, spaces, apostrophes, or hyphens. 2–50 characters." />
+              data-pattern="^[A-Za-z][A-Za-z\'-]{1,49}$"
+              title="Use letters, spaces, apostrophes, or hyphens. 2-50 characters." />
           </div>
   
           <div class="row">
@@ -52,8 +52,8 @@
               id="lastName" name="lastName" type="text"
               autocomplete="family-name" required
               minlength="2" maxlength="50"
-              pattern="^[A-Za-z][A-Za-z\s'\s-]{1,49}$"
-              title="Use letters, spaces, apostrophes, or hyphens. 2–50 characters." />
+              data-pattern="^[A-Za-z][A-Za-z\s'\s-]{1,49}$"
+              title="Use letters, spaces, apostrophes, or hyphens. 2-50 characters." />
           </div>
   
           <div class="row">
@@ -62,8 +62,8 @@
               id="street" name="street" type="text"
               autocomplete="address-line1" required
               minlength="3" maxlength="100"
-              pattern="^[0-9A-Za-z#.,'\-()\s]{3,100}$"
-              title="3–100 characters. Numbers and letters allowed; you may include # , . ' - ( )." />
+              data-pattern="^[0-9A-Za-z#.,'\-()\s]{3,100}$"
+              title="3-100 characters. Numbers and letters allowed; you may include # , . ' - ( )." />
           </div>
   
           <div class="row">
@@ -72,8 +72,8 @@
               id="city" name="city" type="text"
               autocomplete="address-level2" required
               minlength="2" maxlength="60"
-              pattern="^[A-Za-z][A-Za-z\s'.\-]{1,59}$"
-              title="2–60 characters. Letters, spaces, apostrophes, periods, or hyphens." />
+              data-pattern="^[A-Za-z][A-Za-z\s'.\-]{1,59}$"
+              title="2-60 characters. Letters, spaces, apostrophes, periods, or hyphens." />
           </div>
   
           <div class="row">
@@ -82,7 +82,7 @@
               id="state" name="state" type="text"
               autocomplete="address-level1" required
               inputmode="latin" maxlength="2"
-              pattern="^[A-Z]{2}$"
+              data-pattern="^[A-Z]{2}$"
               title="Two uppercase letters, e.g., ID." />
           </div>
   
@@ -92,7 +92,7 @@
               id="zip" name="zip" type="text"
               inputmode="numeric" autocomplete="postal-code" required
               maxlength="10"
-              pattern="^\d{5}(-\d{4})?$"
+              data-pattern="^\d{5}(-\d{4})?$"
               title="Enter 5 digits or ZIP+4 (e.g., 83440 or 83440-1234)." />
           </div>
         </fieldset>
@@ -107,7 +107,7 @@
               value="1234123412341234"
               inputmode="numeric" autocomplete="cc-number" required
               minlength="16" maxlength="16"
-              pattern="^\d{16}$"
+              data-pattern="^\d{16}$"
               title="16 digits, numbers only." />
           </div>
   
@@ -117,7 +117,7 @@
               id="exp" name="exp" type="text"
               inputmode="numeric" autocomplete="cc-exp" required
               maxlength="5"
-              pattern="^(0?[1-9]|1[0-2])\/\d{2}$"
+              data-pattern="^(0?[1-9]|1[0-2])\/\d{2}$"
               title="Use MM/YY. Example: 8/21 or 08/21." />
           </div>
   
@@ -127,7 +127,7 @@
               id="cvc" name="cvc" type="text"
               inputmode="numeric" autocomplete="cc-csc" required
               minlength="3" maxlength="4"
-              pattern="^\d{3,4}$"
+              data-pattern="^\d{3,4}$"
               title="3 or 4 digits." />
           </div>
         </fieldset>
