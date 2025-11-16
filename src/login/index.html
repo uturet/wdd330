@@ -1,20 +1,12 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
   <head id="default-head">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <script>
-      function missingImage(obj) {
-          obj.onerror = null;
-          obj.src = '../images/tents/tent-default.png';
-      }
-    </script>
-    <script src="/js/product.mjs" type="module"></script>
+    <script type="module" src="../js/login.js"></script>
   </head>
-
   <body>
     <header class="divider" id="default-header">
       <div class="logo">
@@ -38,21 +30,25 @@
         </a>
       </div> 
     </header>
-
     <main class="divider">
-      <section class="product-detail">
-        <h3 id="productName"></h3>
-        <h2 class="divider" id="productNameWithoutBrand"></h2>
-        <img id="productImage" class="divider" src="" alt="" />
-        <p class="product-card__price" id="productFinalPrice"></p>
-        <p class="product__color" id="productColorName"></p>
-        <p class="product__description" id="productDescriptionHtmlSimple"></p>
-        <div class="product-detail__add">
-          <button id="addToCart" data-id="">Add to Cart</button>
-        </div>
-      </section>
-    </main>
-
+        <fieldset class="login-form">
+          <legend>Login</legend>
+          <p>
+            <label for="email">Email</label>
+            <input
+              type="text"
+              placeholder="email"
+              id="email"
+              value="user1@email.com"
+            />
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <input type="password" placeholder="password" id="password" />
+          </p>
+          <button type="submit" id="loginButton">Login</button>
+        </fieldset>
+      </main>
     <footer>&copy;NOT a real business</footer>
     <script src="/js/superscript.js" type="module"></script>
   </body>
